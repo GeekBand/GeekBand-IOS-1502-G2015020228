@@ -40,14 +40,18 @@
 */
 
 -(BOOL) isValidateEmail:(NSString *)email{
-NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.{A-Za-z}{2,4}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATHES @%",emailRegex];
+//    NSString *emailRegex = @"^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+//    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+//    return [emailTest evaluateWithObject:email];
+    
+    NSString *emailRegex = @"^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",emailRegex];
     return [emailTest evaluateWithObject:email];
 }
 
 -(BOOL) isValidatePassword:(NSString *)password{
     NSString *passwordRegex = @"[A-Z0-9a-z]{6,20}+$";
-    NSPredicate *passwordTest = [NSPredicate predicateWithFormat:@"SELF MATHES @%",passwordRegex];
+    NSPredicate *passwordTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passwordRegex];
     return [passwordTest evaluateWithObject:password];
 }
 
@@ -59,19 +63,24 @@ NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.{A-Za-z}{2,4}";
 }
 
 -(void)registerHandle{
+    NSString *userName = self.userNameTextFIeld.text;
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextfield.text;
-     NSString *gbid =@"YONGZHOU";
+    NSString *gbid =@"G2015020228";
+    
+    self.registerRequest = [[ZYRegisterRequest alloc]init];
+    [self.registerRequest sendRegistWithUserName:userName email:email password:password gbid:gbid delegate:self];
 }
 
 
 - (IBAction)registerButtonClicked:(id)sender {
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextfield.text;
-      NSString *REPEATpASSWORD = self.repeatPasswordTextField.text;
+    NSString *REPEATpASSWORD = self.repeatPasswordTextField.text;
+    NSString *userName = self.userNameTextFIeld.text;
     
-    if ([email length] == 0 || [password length] == 0 ||[REPEATpASSWORD length] ==0) {
-        [self showErrorMessage:@"email and password can not be empty."];
+    if ([email length] == 0 || [password length] == 0 ||[REPEATpASSWORD length] ==0 || [userName length] == 0) {
+        [self showErrorMessage:@"user name and email and password can not be empty."];
     }else if (![self isValidateEmail:email]){
       [self showErrorMessage:@"invalidate email adderss"];
     }else if (![password  isEqualToString:REPEATpASSWORD]){
@@ -109,6 +118,7 @@ NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.{A-Za-z}{2,4}";
 }
 
 - (IBAction)touchDownAction:(id)sender {
+    [self.userNameTextFIeld resignFirstResponder];
     [self.emailTextField resignFirstResponder];
     [self.passwordTextfield resignFirstResponder];
     [self.repeatPasswordTextField resignFirstResponder];

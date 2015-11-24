@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ZYMyViewController.h"
 
 @interface AppDelegate ()
 
@@ -40,6 +41,36 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)loadMainViewWithController:(UIViewController *)controller{
+
+    UIViewController *squarevc = [[UIViewController alloc] init];
+    
+    UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:squarevc];
+    nav1.navigationBar.barTintColor = [[UIColor alloc] initWithRed:230/255.0 green:106/255.0 blue:58/255.0 alpha:1];
+    nav1.tabBarItem.title = @"Square";
+    nav1.tabBarItem.image = [UIImage imageNamed:@"square"];
+    
+    UIStoryboard *myStoryBoard = [UIStoryboard storyboardWithName:@"ZYmY" bundle:[NSBundle mainBundle]];
+    ZYMyViewController *myVC = [myStoryBoard instantiateViewControllerWithIdentifier:@"MyStoryboard"];
+    myVC.tabBarItem.title = @"My";
+    myVC.tabBarItem.image = [UIImage imageNamed:@"my"];
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = @[nav1,myVC];
+    
+[controller presentViewController:self.tabBarController animated:YES completion:nil];
+//    
+//    [UIView animateWithDuration:0.3 animations:^{self.l} completion:<#^(BOOL finished)completion#>]
+    
+    CGFloat viewWidth = [UIScreen mainScreen].bounds.size.width;
+    UIButton *photoButton = [[UIButton alloc]initWithFrame:CGRectMake(viewWidth/2-60, -25, 120, 50)];
+    [photoButton setImage:[UIImage imageNamed:@"publish"] forState:UIControlStateNormal];
+    [photoButton addTarget:self action:@selector(photoButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.tabBarController.tabBar addSubview:photoButton];
+    
+    
 }
 
 @end

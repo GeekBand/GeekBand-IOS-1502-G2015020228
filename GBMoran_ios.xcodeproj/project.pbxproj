@@ -22,6 +22,8 @@
 		251D1DA41C02D9D000C08AB9 /* ZYRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251D1DA31C02D9D000C08AB9 /* ZYRegisterViewController.m */; };
 		251D1DA71C03112100C08AB9 /* ZYRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 251D1DA61C03112100C08AB9 /* ZYRegisterRequest.m */; };
 		251D1DAA1C03F98200C08AB9 /* ZYRegisterRequestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 251D1DA91C03F98200C08AB9 /* ZYRegisterRequestParser.m */; };
+		251D1DAC1C03FEF600C08AB9 /* ZYmY.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 251D1DAB1C03FEF600C08AB9 /* ZYmY.storyboard */; };
+		25543D291C045501005FA283 /* ZYMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25543D281C045501005FA283 /* ZYMyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,9 @@
 		251D1DA61C03112100C08AB9 /* ZYRegisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRegisterRequest.m; sourceTree = "<group>"; };
 		251D1DA81C03F98200C08AB9 /* ZYRegisterRequestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRegisterRequestParser.h; sourceTree = "<group>"; };
 		251D1DA91C03F98200C08AB9 /* ZYRegisterRequestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRegisterRequestParser.m; sourceTree = "<group>"; };
+		251D1DAB1C03FEF600C08AB9 /* ZYmY.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ZYmY.storyboard; sourceTree = "<group>"; };
+		25543D271C045501005FA283 /* ZYMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMyViewController.h; sourceTree = "<group>"; };
+		25543D281C045501005FA283 /* ZYMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +153,7 @@
 		251D1D781BFF186800C08AB9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				251D1DAD1C04028F00C08AB9 /* My */,
 				251D1D791BFF186800C08AB9 /* LoginAndRegister */,
 			);
 			path = Controllers;
@@ -279,8 +285,18 @@
 			isa = PBXGroup;
 			children = (
 				251D1D941BFF186800C08AB9 /* LoginAndRegister.storyboard */,
+				251D1DAB1C03FEF600C08AB9 /* ZYmY.storyboard */,
 			);
 			path = LoginAndRegister;
+			sourceTree = "<group>";
+		};
+		251D1DAD1C04028F00C08AB9 /* My */ = {
+			isa = PBXGroup;
+			children = (
+				25543D271C045501005FA283 /* ZYMyViewController.h */,
+				25543D281C045501005FA283 /* ZYMyViewController.m */,
+			);
+			name = My;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				251D1D9D1BFF186800C08AB9 /* LoginAndRegister.storyboard in Resources */,
+				251D1DAC1C03FEF600C08AB9 /* ZYmY.storyboard in Resources */,
 				251D1DA11BFF190700C08AB9 /* Default-568h@2x.png in Resources */,
 				251D1D9F1BFF18DD00C08AB9 /* Main.xcassets in Resources */,
 				251D1D9A1BFF186800C08AB9 /* Info.plist in Resources */,
@@ -388,6 +405,7 @@
 				251D1D951BFF186800C08AB9 /* AppDelegate.m in Sources */,
 				251D1DA71C03112100C08AB9 /* ZYRegisterRequest.m in Sources */,
 				251D1D991BFF186800C08AB9 /* GBMLoginRequest.m in Sources */,
+				25543D291C045501005FA283 /* ZYMyViewController.m in Sources */,
 				251D1D971BFF186800C08AB9 /* YongUserModel.m in Sources */,
 				251D1D9C1BFF186800C08AB9 /* BLMultipartForm.m in Sources */,
 				251D1DA41C02D9D000C08AB9 /* ZYRegisterViewController.m in Sources */,

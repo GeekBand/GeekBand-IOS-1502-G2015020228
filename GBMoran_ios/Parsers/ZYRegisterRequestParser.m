@@ -21,7 +21,7 @@
             id returnMsg = [jsonDic valueForKey:@"message"];
             if ([[returnMsg class] isSubclassOfClass:[NSString class]]) {
                 YongUserModel *user = [[YongUserModel alloc]init];
-                user.loginReturnMessage = returnMsg;
+                user.registerreturnMessage = returnMsg;
                 
                 return user;
             }

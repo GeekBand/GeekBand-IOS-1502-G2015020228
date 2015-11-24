@@ -9,6 +9,7 @@
 #import "GBMLoginRequest.h"
 #import "BLMultipartForm.h"
 #import "YongUserModel.h"
+#import "YongLoginParser.h"
 
 @implementation GBMLoginRequest
 
@@ -49,11 +50,24 @@
     NSLog(@"receive data string : %@",string);
     
     
+    YongLoginParser *parser = [[YongLoginParser alloc]init];
+    YongUserModel *user = [parser parseJson:self.receiveData];
+    
+    if ([_delegate respondsToSelector:@selector(loginRequestSuccess:user:)]) {
+        [_delegate loginRequestSuccess:self user:user];
+    }
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
     self.receiveData = [NSMutableData data];
     [self.receiveData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"error: %@", error);
+    if ([_delegate respondsToSelector:@selector(loginRequestFailed:error:)]) {
+        [_delegate loginRequestFailed:self error:error];
+    }
 }
 
 @end

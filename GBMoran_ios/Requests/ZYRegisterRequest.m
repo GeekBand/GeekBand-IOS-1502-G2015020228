@@ -28,6 +28,7 @@
     request.cachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
     
     BLMultipartForm *form = [[BLMultipartForm alloc] init];
+    [form addValue:username forField:@"username"];
     [form addValue:email forField:@"email"];
     [form addValue:password forField:@"password"];
     [form addValue:gbid forField:@"gbid"];
@@ -56,15 +57,15 @@
     
     ZYRegisterRequestParser *parser = [[ZYRegisterRequestParser alloc] init];
     YongUserModel *user = [parser parseJson:self.reveiveData];
-    if ([self.delegate respondsToSelector:@selector(registerRequestSuccess:user::error:)]) {
-        [self.delegate registerRequestSuccess:self user:user];
+    if ([_delegate respondsToSelector:@selector(registerRequestSuccess:user:)]) {
+        [_delegate registerRequestSuccess:self user:user];
     }
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
     NSLog(@"error = %@", error);
-    if ([self.delegate respondsToSelector:@selector(registerRequestfailed:error:)]) {
-        [self.delegate registerRequestfailed:self error:error];
+    if ([_delegate respondsToSelector:@selector(registerRequestfailed:error:)]) {
+        [_delegate registerRequestfailed:self error:error];
     }
 }
 

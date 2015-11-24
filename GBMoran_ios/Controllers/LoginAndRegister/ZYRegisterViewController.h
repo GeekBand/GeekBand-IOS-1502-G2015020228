@@ -18,5 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerBUtton;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 - (IBAction)touchDownAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *userNameTextFIeld;
+
+@property (nonatomic, strong) ZYRegisterRequest *registerRequest;
 
 @end
