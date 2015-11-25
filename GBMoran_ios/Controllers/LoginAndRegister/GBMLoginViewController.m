@@ -10,6 +10,8 @@
 #import "YongUserModel.h"
 #import "GBMLoginRequest.h"
 #import "AppDelegate.h"
+#import "ZYGlobal.h"
+#import "ZYGetImage.h"
 
 @implementation GBMLoginViewController
 
@@ -78,6 +80,13 @@
 -(void)loginRequestSuccess:(GBMLoginRequest *)request user:(YongUserModel *)user{
     if ([user.loginReturnMessage isEqualToString:@"Login success"]) {
         NSLog(@"go to index page...");
+        
+        [ZYGlobal shareGlobal].user = user;
+        [ZYGlobal shareGlobal].user.email = self.emailTextField.text;
+        
+        ZYGetImage *getImage = [[ZYGetImage alloc] init];
+        [getImage sendGettingImageRequest];
+        
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         [appDelegate loadMainViewWithController:self];
     }else{

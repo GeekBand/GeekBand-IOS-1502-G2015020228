@@ -19,15 +19,34 @@
     if(error){
         NSLog(@"The parser is not working.");
     }else{
+        YongUserModel *user = [[YongUserModel alloc]init];
         if ([[jsonDic class] isSubclassOfClass:[NSDictionary class]]) {
             id returnMsg = [jsonDic valueForKey:@"message"];
             if ([[returnMsg class] isSubclassOfClass:[NSString class]]) {
-                YongUserModel *user = [[YongUserModel alloc]init];
+                
                 user.loginReturnMessage = returnMsg;
                 
-                return user;
+                id data = [jsonDic valueForKey:@"data"];
+                if ([[data class] isSubclassOfClass:[NSDictionary class]]) {
+                    id userId = [data valueForKey:@"user_id"];
+                    if ([[userId class] isSubclassOfClass:[NSString class]]) {
+                        user.userId = userId;
+                    }
+                    
+                    id token = [data valueForKey:@"token"];
+                    if ([[token class] isSubclassOfClass:[NSString class]]) {
+                        user.token = token;
+                    }
+                    
+                    id userName = [data valueForKey:@"user_name"];
+                    if ([[userName class] isSubclassOfClass:[NSString class]]) {
+                        user.username = userName;
+                    }
+                }
             }
         }
+        
+        return user;
     }
     
     return nil;

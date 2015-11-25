@@ -53,7 +53,7 @@
     nav1.tabBarItem.image = [UIImage imageNamed:@"square"];
     
     UIStoryboard *myStoryBoard = [UIStoryboard storyboardWithName:@"ZYmY" bundle:[NSBundle mainBundle]];
-    ZYMyViewController *myVC = [myStoryBoard instantiateViewControllerWithIdentifier:@"MyStoryboard"];
+    ZYMyViewController *myVC = [myStoryBoard instantiateViewControllerWithIdentifier:@"MyTableStoryBoard"];
     myVC.tabBarItem.title = @"My";
     myVC.tabBarItem.image = [UIImage imageNamed:@"my"];
     
