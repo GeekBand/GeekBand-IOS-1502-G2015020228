@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIImagePickerController *pickerController;
 
 - (void)loadMainViewWithController:(UIViewController *)controller;
+-(void)loadLoginView;
 
 @end
 

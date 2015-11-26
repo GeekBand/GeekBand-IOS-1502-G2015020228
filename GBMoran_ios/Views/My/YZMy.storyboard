@@ -303,7 +303,7 @@
         <!--Home Page View Controller-->
         <scene sceneID="7D1-sG-QAr">
             <objects>
-                <viewController id="mUN-BG-by0" customClass="JYHomePageViewController" sceneMemberID="viewController">
+                <viewController id="mUN-BG-by0" customClass="ZYHomePageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IwU-iK-AiC"/>
                         <viewControllerLayoutGuide type="bottom" id="ke6-Ju-l2r"/>
@@ -396,7 +396,7 @@
         <!--MyNav-->
         <scene sceneID="swl-5I-qqn">
             <objects>
-                <navigationController storyboardIdentifier="MyStoryboard" title="MyNav" automaticallyAdjustsScrollViewInsets="NO" id="uoo-as-Mqe" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MyPageStoryboard" title="MyNav" automaticallyAdjustsScrollViewInsets="NO" id="uoo-as-Mqe" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的" image="my" id="SOR-Bt-OXh"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

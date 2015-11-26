@@ -43,8 +43,12 @@
 */
 
 - (IBAction)loginButtonClicked:(id)sender {
+    self.emailTextField.text = @"286599344@qq.com";
+    self.passwordTextField.text = @"123456";
+    
     NSString *userName = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
+
     
     if ([userName length] == 0 || [password length] == 0) {
         [self showErrorMessage:@"Email and password can not be empty."];

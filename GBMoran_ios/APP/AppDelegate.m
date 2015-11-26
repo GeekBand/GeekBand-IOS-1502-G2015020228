@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ZYMyViewController.h"
+#import "GBMLoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -52,8 +53,8 @@
     nav1.tabBarItem.title = @"Square";
     nav1.tabBarItem.image = [UIImage imageNamed:@"square"];
     
-    UIStoryboard *myStoryBoard = [UIStoryboard storyboardWithName:@"ZYmY" bundle:[NSBundle mainBundle]];
-    ZYMyViewController *myVC = [myStoryBoard instantiateViewControllerWithIdentifier:@"MyTableStoryBoard"];
+    UIStoryboard *myStoryBoard = [UIStoryboard storyboardWithName:@"YZMy" bundle:[NSBundle mainBundle]];
+    ZYMyViewController *myVC = [myStoryBoard instantiateViewControllerWithIdentifier:@"MyPageStoryboard"];
     myVC.tabBarItem.title = @"My";
     myVC.tabBarItem.image = [UIImage imageNamed:@"my"];
     
@@ -69,6 +70,70 @@
     [photoButton setImage:[UIImage imageNamed:@"publish"] forState:UIControlStateNormal];
     [photoButton addTarget:self action:@selector(photoButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.tabBarController.tabBar addSubview:photoButton];
+    
+    
+}
+
+-(void)loadLoginView{
+    UIStoryboard *loginStoryboard = [UIStoryboard storyboardWithName:@"LoginAndRegister" bundle:[NSBundle mainBundle]];
+    GBMLoginViewController *loginController = [loginStoryboard instantiateViewControllerWithIdentifier:@"LoginStoryboard"];
+    [loginController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)photoButtonClicked{
+    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:nil
+                                                      delegate:self
+                                             cancelButtonTitle:@"取消"
+                                        destructiveButtonTitle:nil
+                                             otherButtonTitles:@"拍照",@"从手机相册选择", nil];
+    [sheet showInView:self.tabBarController.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    self.pickerController = [[UIImagePickerController alloc] init];
+    
+    if(buttonIndex == 0){
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera ]) {
+            self.pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            self.pickerController.allowsEditing = NO;
+            
+            self.pickerController.delegate = self;
+            [self.tabBarController presentViewController:self.pickerController animated:YES completion:nil ];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法获取相机" delegate:self cancelButtonTitle:@"取消" otherButtonTitles: nil];
+            [alert show];
+            return;
+        }
+    }else if (buttonIndex  == 1){
+        self.pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        self.pickerController.delegate = self;
+        [self.tabBarController presentViewController:self.pickerController animated:YES completion:nil ];
+    }
+}
+- (UIImage *)imageWithImage:(UIImage *)image scaleToSize:(CGSize)size
+{
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
+}
+
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    
+    CGSize imageSize = image.size;
+    imageSize.height = 626;
+    imageSize.width =413;
+    image = [self imageWithImage:image scaleToSize:imageSize];
+    
+    
+    if(self.pickerController.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
+        
+    }else{
+        
+    }
     
     
 }

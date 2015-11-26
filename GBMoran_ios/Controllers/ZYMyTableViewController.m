@@ -8,6 +8,7 @@
 
 #import "ZYMyTableViewController.h"
 #import "ZYGlobal.h"
+#import "AppDelegate.h"
 
 @interface ZYMyTableViewController ()
 
@@ -26,7 +27,6 @@
         self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:237/255.0f green:127/255.0f blue:74/255.0f alpha:1.0f];
     self.headImageView.layer.cornerRadius = self.headImageView.frame.size.width/2.0f;
     self.headImageView.clipsToBounds =YES;
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,6 +36,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     self.nickNameLabel.text = [ZYGlobal shareGlobal].user.username;
+    self.emailLabel.text = [ZYGlobal shareGlobal].user.email;
     self.headImageView.image = [ZYGlobal shareGlobal].user.image;
 }
 
@@ -52,6 +53,28 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0){
+        if(indexPath.row ==2){
+            UIAlertController *alter = [UIAlertController alertControllerWithTitle:nil message:@"确定注销吗?" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *enterAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [ZYGlobal shareGlobal].user = nil;
+                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                
+            }];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel" style:UIAlertActionStyleCancel handler:nil];
+            [alter addAction:enterAction];
+            [alter addAction:cancelAction];
+            [self presentViewController:alter animated:YES completion:nil];
+        }
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*

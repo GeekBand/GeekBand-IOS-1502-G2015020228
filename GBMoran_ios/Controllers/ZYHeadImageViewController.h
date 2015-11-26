@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ZYChangeImageRequest.h"
 
-@interface ZYHeadImageViewController : UIViewController<ZYChangeImageRequestDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
+@interface ZYHeadImageViewController : UIViewController<ZYChangeImageRequestDelegate,UIImagePickerControllerDelegate>
 - (IBAction)doneBarbUTTONcLICKED:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 - (IBAction)changeHeadImageClicked:(id)sender;
