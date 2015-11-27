@@ -9,7 +9,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KxMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,7 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C6D66FE7D3AD8963382F17E79643E1B8</key>
+		<key>483E684B48FFDC12BD92E116191580AC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8F06F49D64E04DCD9683D916034330CE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8F74D9EA91F4C43190670066BAC37D44</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7165669B79296FA6160DFC495CB2446</key>
 		<dict>
 			<key>primary</key>
 			<true/>

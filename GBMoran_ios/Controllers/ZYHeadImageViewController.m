@@ -84,15 +84,6 @@
         [self.tabBarController presentViewController:self.pickerController animated:YES completion:nil ];
     }
 }
-- (UIImage *)imageWithImage:(UIImage *)image scaleToSize:(CGSize)size
-{
-    UIGraphicsBeginImageContext(size);
-    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return scaledImage;
-}
-
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *image = info[UIImagePickerControllerOriginalImage];

@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "ZYMyViewController.h"
 #import "GBMLoginViewController.h"
+#import "ZYSquareViewController.h"
+#import "ZYPubilshViewController.h"
 
 @interface AppDelegate ()
 
@@ -45,8 +47,9 @@
 }
 
 -(void)loadMainViewWithController:(UIViewController *)controller{
-
-    UIViewController *squarevc = [[UIViewController alloc] init];
+    UIStoryboard *squareStoryboard = [UIStoryboard storyboardWithName:@"ZYSquare" bundle:[NSBundle mainBundle]];
+    
+    ZYSquareViewController *squarevc =  [squareStoryboard instantiateViewControllerWithIdentifier:@"SquareStoryboard"];
     
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:squarevc];
     nav1.navigationBar.barTintColor = [[UIColor alloc] initWithRed:230/255.0 green:106/255.0 blue:58/255.0 alpha:1];
@@ -123,17 +126,43 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
-    CGSize imageSize = image.size;
-    imageSize.height = 626;
-    imageSize.width =413;
-    image = [self imageWithImage:image scaleToSize:imageSize];
+//    CGSize imageSize = image.size;
+//    imageSize.height = 626;
+//    imageSize.width =413;
+//    image = [self imageWithImage:image scaleToSize:imageSize];
+    
+    UIStoryboard *publishStoryboard = [UIStoryboard storyboardWithName:@"ZYPublish" bundle:[NSBundle mainBundle]];
+    ZYPubilshViewController *publishVC = [publishStoryboard instantiateViewControllerWithIdentifier:@"CMJ"];
+    
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:publishVC];
+    publishVC.photoView.image = image;
+    //publishVC.imagep
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [self.tabBarController presentViewController:nav animated:YES completion:nil];
     
     
-    if(self.pickerController.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
-        
-    }else{
-        
-    }
+//    if(self.pickerController.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
+//        UIStoryboard *publishStoryboard = [UIStoryboard storyboardWithName:@"ZYPublish" bundle:[NSBundle mainBundle]];
+//        ZYPubilshViewController *publishVC = [publishStoryboard instantiateViewControllerWithIdentifier:@"CMJ"];
+//        
+//            publishVC.photoView.image = image;
+//        [picker pushViewController:publishVC animated:YES];
+//    }else{
+//        UIStoryboard *publishStoryboard = [UIStoryboard storyboardWithName:@"ZYPublish" bundle:[NSBundle mainBundle]];
+//        ZYPubilshViewController *publishVC = [publishStoryboard instantiateViewControllerWithIdentifier:@"CMJ"];
+//        
+//        publishVC.photoView.image = image;
+//        [picker pushViewController:publishVC animated:YES];
+//        
+//        
+//        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:publishVC];
+//        publishVC.photoView.image = image;
+//        //publishVC.imagep
+//        
+//        [picker dismissViewControllerAnimated:YES completion:nil];
+//        [self.tabBarController presentViewController:nav animated:YES completion:nil];
+//    }
     
     
 }

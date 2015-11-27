@@ -17,7 +17,7 @@
     self.delegate = delegate;
     
     NSURL *url = [NSURL URLWithString:@"http://moran.chinacloudapp.cn/moran/web/user/avatar"];
-    NSData *data = UIImageJPEGRepresentation(image, 0.00001);
+    NSData *data = UIImageJPEGRepresentation(image, 0.1);
     BLMultipartForm *form = [[BLMultipartForm alloc]init];
     [form addValue:[ZYGlobal shareGlobal].user.userId forField:@"user_id"];
     [form addValue:[ZYGlobal shareGlobal].user.token forField:@"token"];
@@ -27,6 +27,10 @@
     request.HTTPBody = [form httpBody];
     [request setValue:form.contentType forHTTPHeaderField:@"Content-Type"];
     self.urlConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self startImmediately:YES];
+    
+//    NSURLSession session = [NSURLSession sharedSession];
+//    NSURLSessionDataTask task = [session dataTaskWithRequest:request];
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
